@@ -14,28 +14,28 @@ public class test_combine : MonoBehaviour {
     public Color ColorContrast = Color.white;
     public Color ColorGamma = Color.white;
     public Color ColorGain = Color.white;
-    public Color ColorOffset = Color.black;
+    public Color ColorOffset = new Color(0, 0 ,0 ,0);
 
 
     public Color ColorSaturationShadows = Color.white;
     public Color ColorContrastShadows = Color.white;
     public Color ColorGammaShadows = Color.white;
     public Color ColorGainShadows = Color.white;
-    public Color ColorOffsetShadows = Color.black;
+    public Color ColorOffsetShadows = new Color(0, 0, 0, 0);
 
 
     public Color ColorSaturationMidtones = Color.white;
     public Color ColorContrastMidtones = Color.white;
     public Color ColorGammaMidtones = Color.white;
     public Color ColorGainMidtones = Color.white;
-    public Color ColorOffsetMidtones = Color.black;
+    public Color ColorOffsetMidtones = new Color(0, 0, 0, 0);
 
 
     public Color ColorSaturationHighlights = Color.white;
     public Color ColorContrastHighlights = Color.white;
     public Color ColorGammaHighlights = Color.white;
     public Color ColorGainHighlights = Color.white;
-    public Color ColorOffsetHighlights = Color.black;
+    public Color ColorOffsetHighlights = new Color(0, 0, 0, 0);
 
     public float ColorCorrectionShadowsMax = 0.09f;
     public float ColorCorrectionHighlightsMin = 0.5f;
