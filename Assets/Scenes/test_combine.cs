@@ -5,6 +5,9 @@ using UnityEditor;
 
 public class test_combine : MonoBehaviour {
     public RenderTexture _combinedLutTexture;
+    RenderTexture _combinedLutTexture_unfilter;
+    RenderTexture save_texture;
+
     ComputeShader CS_CombinedLut;
 
     public Color ColorSaturation = Color.white;
@@ -81,8 +84,13 @@ public class test_combine : MonoBehaviour {
 
     void test_3d_tex()
     {
+        //copy one use point filter\
+        _combinedLutTexture_unfilter = new RenderTexture(_combinedLutTexture);
+        _combinedLutTexture_unfilter.filterMode = FilterMode.Point;
+        Graphics.CopyTexture(_combinedLutTexture, _combinedLutTexture_unfilter);
+
         _debug_mtl.SetTexture("_CombinedLutTex", _combinedLutTexture);
-        _debug_tex.SetTexture("_Volume", _combinedLutTexture);
+        _debug_tex.SetTexture("_Volume", _combinedLutTexture_unfilter);
     }
     private void ComputeLutTexture()
     {
@@ -143,6 +151,7 @@ public class test_combine : MonoBehaviour {
         v3ColorScale[0] = 1.0f;
         v3ColorScale[1] = 1.0f;
         v3ColorScale[2] = 1.0f;
+
         CS_CombinedLut.SetFloats("ColorScale", v3ColorScale);
 
         SetColorForCS("OverlayColor", new Color(0, 0, 0, 0));
@@ -265,14 +274,16 @@ public class test_combine : MonoBehaviour {
 
     void create_tex_test()
     {
-        create_3d_tex(32, "Assets/Scenes/output_3d.asset", TextureFormat.ARGB32, Color.black);
+        save_texture = new RenderTexture(_combinedLutTexture);
+        Graphics.CopyTexture(_combinedLutTexture, save_texture);
+        AssetDatabase.CreateAsset(save_texture, "Assets/Scenes/_combinedLutTexture.asset");
     }
 
     // Update is called once per frame
     void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //ComputeLutTexture();
+            ComputeLutTexture();
             create_tex_test();
         }
     }

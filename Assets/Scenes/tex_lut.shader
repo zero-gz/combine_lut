@@ -76,7 +76,7 @@
 
 				float3 UVW = LUTEncodedColor * ((LUTSize - 1) / LUTSize) + (0.5f / LUTSize);
 
-				half3 OutDeviceColor = tex3D(_CombinedLutTex, UVW);
+				half3 OutDeviceColor = tex3D(_CombinedLutTex, LUTEncodedColor);
 				return OutDeviceColor * 1.05;
 			}
 
@@ -91,6 +91,8 @@
 				{
 					finalColor = pow(finalColor, 2.2);
 				}
+
+				//finalColor = float4(0, 0, 0.5, 1);
 				return finalColor;
 			}
 			ENDCG

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: tex_lut
-  m_Shader: {fileID: 4800000, guid: 982c2c3000e878b47b0792cd62bc063c, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5587f04049c157e4c8d6fcf02701607f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,11 +19,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _CombinedLutTex:
-        m_Texture: {fileID: 11700000, guid: 3877544b9ecb3fd47927ec4e774d8993, type: 2}
+        m_Texture: {fileID: 11700000, guid: 893d36176e7e21c4399babcbd1204f13, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 7a0c743cb61d6a94085e53ae2f1f20d7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2764e816f4da7564495e844f98ff3381, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []

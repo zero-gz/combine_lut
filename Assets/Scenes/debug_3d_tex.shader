@@ -19,6 +19,7 @@ Shader "my_shader/debug_3d_tex" {
 
 		struct vs_input {
 			float4 vertex : POSITION;
+			float2 uv : TEXCOORD0;
 		};
 
 		struct ps_input {
@@ -31,15 +32,18 @@ Shader "my_shader/debug_3d_tex" {
 		{
 			ps_input o;
 			o.pos = UnityObjectToClipPos(v.vertex);
-			o.uv = v.vertex.xyz*0.5 + 0.5;
+			//o.uv = v.vertex.xyz*0.5 + 0.5;
+			o.uv = float3(v.uv, fmod(_Time.y, 1.0f) );
 			return o;
 		}
 
 		sampler3D _Volume;
 
 		float4 frag(ps_input i) : COLOR
-		{
-			return tex3D(_Volume, i.uv);
+	{
+
+			float3 color = tex3D(_Volume, i.uv);
+			return float4(color, 1.0);
 		}
 
 		ENDCG
