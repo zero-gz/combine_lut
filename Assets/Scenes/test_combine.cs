@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[ExecuteInEditMode]
 public class test_combine : MonoBehaviour {
     public RenderTexture _combinedLutTexture;
     RenderTexture _combinedLutTexture_unfilter;
@@ -78,8 +79,8 @@ public class test_combine : MonoBehaviour {
 
 
         //_combinedLutTexture = create_3d_tex(tex1Res, "Assets/Scenes/output_3d.assets", TextureFormat.RGBAFloat, Color.black);
-        _debug_mtl = GameObject.Find("Plane").GetComponent<MeshRenderer>().material;
-        _debug_tex = GameObject.Find("Cube").GetComponent<MeshRenderer>().material;
+        _debug_mtl = GameObject.Find("Plane").GetComponent<MeshRenderer>().sharedMaterial;
+        _debug_tex = GameObject.Find("show_plane").GetComponent<MeshRenderer>().sharedMaterial;
     }
 
     void test_3d_tex()
@@ -88,6 +89,7 @@ public class test_combine : MonoBehaviour {
         _combinedLutTexture_unfilter = new RenderTexture(_combinedLutTexture);
         _combinedLutTexture_unfilter.filterMode = FilterMode.Point;
         Graphics.CopyTexture(_combinedLutTexture, _combinedLutTexture_unfilter);
+        
 
         _debug_mtl.SetTexture("_CombinedLutTex", _combinedLutTexture);
         _debug_tex.SetTexture("_Volume", _combinedLutTexture_unfilter);
@@ -202,7 +204,7 @@ public class test_combine : MonoBehaviour {
         CS_CombinedLut.SetTexture(noise1Gen, "RWOutComputeTex", _combinedLutTexture);
         CS_CombinedLut.Dispatch(noise1Gen, tex1Res / 8, tex1Res / 8, tex1Res / 8);
 
-        Debug.Log("CS Compute Process OK!");
+        //Debug.Log("CS Compute Process OK!");
 
         test_3d_tex();
     }
@@ -281,10 +283,14 @@ public class test_combine : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ComputeLutTexture();
             create_tex_test();
         }
+        */
+
+        ComputeLutTexture();
     }
 }
